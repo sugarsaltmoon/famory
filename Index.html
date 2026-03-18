@@ -118,13 +118,24 @@
         const API_URL = 'https://script.google.com/macros/s/AKfycbykn3NEHyBzE9cWBajlPweAXqFkE3XQNFkwTIMEEngSw9VlPdqcMcDp-cyoBBp8rWD8KA/exec';
         
         const params = new URLSearchParams(window.location.search);
-        const ROLE = params.get('role') || 'guest';
+        const ROLE = (params.get('role') || 'guest').toLowerCase();
+        console.log('Detected Role:', ROLE);
 
         let currentMonth = new Date();
         let allEvents = [];
 
         window.onload = function() {
-            if (ROLE === 'admin') document.getElementById('admin-only').classList.remove('hidden');
+            console.log('Detected Role:', ROLE);
+            if (ROLE === 'admin') {
+                const btn = document.getElementById('admin-only');
+                if (btn) {
+                    btn.classList.remove('hidden');
+                    btn.style.display = 'block'; // 強制的に表示
+                    console.log('Admin button shown');
+                } else {
+                    console.error('Admin button element not found');
+                }
+            }
             loadData();
         };
 
@@ -136,11 +147,16 @@
             setWait(true);
             try {
                 const response = await fetch(`${API_URL}?action=getEvents&role=${ROLE}`);
-                allEvents = await response.json();
-                renderView();
+                const data = await response.json();
+                if (data.error) {
+                    alert('サーバーエラー:\n' + data.error);
+                } else {
+                    allEvents = data;
+                    renderView();
+                }
             } catch (err) {
                 console.error('通信エラー:', err);
-                alert('データの読み込みに失敗しました。GASのデプロイが完了し、アクセス権限が「全員」になっているか確認してください。');
+                alert('通信に失敗しました。以前の指示に従って、GASのデプロイ設定（アクセス：全員）が正しく行われているか、またはWebアプリURLが正しいか確認してください。\n\nエラー内容: ' + err.message);
             }
             setWait(false);
         }
