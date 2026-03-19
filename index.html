@@ -102,6 +102,12 @@
                 <input type="text" id="f-location" placeholder="場所（店名・住所など）" class="w-full p-4 border-2 border-tan-100 rounded-xl text-lg">
                 
                 <div>
+                    <label class="block text-sm font-bold text-slate-400 mb-2">写真・動画のアップロード</label>
+                    <input type="file" id="f-files" multiple accept="image/*,video/*" class="w-full p-3 border-2 border-dashed border-tan-200 rounded-xl text-sm bg-white">
+                    <p class="text-xs text-slate-400 mt-1">※複数選択可能です</p>
+                </div>
+
+                <div>
                     <label class="block text-sm font-bold text-slate-400 mb-2">共有範囲</label>
                     <div class="grid grid-cols-3 gap-2">
                         <button type="button" onclick="setRange('全員')" id="r-all" class="range-btn p-3 rounded-xl border-2 border-blue-200 text-blue-500 font-bold bg-blue-50">全員</button>
@@ -122,7 +128,7 @@
     <!-- Scripts -->
     <script>
         // --- 設定エリア ---
-        const API_URL = 'https://script.google.com/macros/s/AKfycbw8PxZN5Hwr75p8V-mhNZYRgxXR0TJjkYgenbyBHtc4qfdAWKtocZLDXaEttsAOEmQblA/exec';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwlFjHsYDYUyx_irB15Mge0XLgWpuFNARgJbP0a2vjLMCrCcZCpjUjfAQHu3B6oTyBHUw/exec';
         
         const params = new URLSearchParams(window.location.search);
         const ROLE = (params.get('role') || 'guest').toLowerCase();
@@ -251,14 +257,23 @@
                         </div>
                         <h3 class="text-xl font-bold">${e.タイトル}</h3>
                         ${e.詳細 ? `<p class="text-slate-600 leading-relaxed whitespace-pre-wrap">${e.詳細}</p>` : ''}
-                        ${e.場所 ? `
-                            <button onclick="openMap('${e.場所}')" class="text-blue-600 bg-blue-50 px-3 py-2 rounded-lg flex items-center gap-1 text-sm font-bold">
-                                📍 ${e.場所}
-                            </button>
-                        ` : ''}
-                        <div class="flex gap-2 pt-2">
-                             ${e.pCloudURL ? `<a href="${e.pCloudURL}" target="_blank" class="flex-1 bg-[#f5f5dc] p-3 rounded-xl text-center text-sm font-bold">📷 写真</a>` : ''}
-                             ${e.資料URL ? `<a href="${e.資料URL}" target="_blank" class="flex-1 bg-[#f5f5dc] p-3 rounded-xl text-center text-sm font-bold">📄 資料</a>` : ''}
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                             ${e.場所 ? `
+                                <button onclick="openMap('${e.場所}')" class="text-blue-600 bg-blue-50 px-3 py-2 rounded-lg flex items-center gap-1 text-sm font-bold">
+                                    📍 ${e.場所}
+                                </button>
+                            ` : ''}
+                             ${e.pCloudURL ? `
+                                <a href="${e.pCloudURL}" target="_blank" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg flex items-center gap-1 text-sm font-bold shadow-sm">
+                                    🎥 写真・動画
+                                </a>
+                             ` : ''}
+                             ${e.資料URL ? `
+                                <a href="${e.資料URL}" target="_blank" class="bg-slate-100 text-slate-600 px-3 py-2 rounded-lg flex items-center gap-1 text-sm font-bold shadow-sm">
+                                    📄 資料
+                                </a>
+                             ` : ''}
                         </div>
                     </div>
                 `;
@@ -313,17 +328,36 @@
         async function handleSave(e) {
             e.preventDefault();
             setWait(true);
-            const data = {
-                action: 'addEvent',
-                role: ROLE,
-                date: document.getElementById('f-date').value,
-                title: document.getElementById('f-title').value,
-                detail: document.getElementById('f-detail').value,
-                location: document.getElementById('f-location').value,
-                range: document.getElementById('f-range').value
-            };
-
+            
             try {
+                const fileInput = document.getElementById('f-files');
+                const filePromises = Array.from(fileInput.files).map(file => {
+                    return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onload = (ev) => {
+                            resolve({
+                                name: file.name,
+                                type: file.type,
+                                base64: ev.target.result.split(',')[1]
+                            });
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                });
+                
+                const files = await Promise.all(filePromises);
+
+                const data = {
+                    action: 'addEvent',
+                    role: ROLE,
+                    date: document.getElementById('f-date').value,
+                    title: document.getElementById('f-title').value,
+                    detail: document.getElementById('f-detail').value,
+                    location: document.getElementById('f-location').value,
+                    range: document.getElementById('f-range').value,
+                    files: files
+                };
+
                 const res = await fetch(API_URL, {
                     method: 'POST',
                     body: JSON.stringify(data)
@@ -336,6 +370,7 @@
                     alert('保存に失敗しました: ' + result.error);
                 }
             } catch (err) {
+                console.error('Save Error:', err);
                 alert('通信エラーが発生しました');
             }
             setWait(false);
