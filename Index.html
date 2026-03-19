@@ -61,7 +61,7 @@
         <div id="view-calendar" class="space-y-4">
             <div id="calendar-header" class="flex items-center justify-between mb-2">
                 <button onclick="changeMonth(-1)" class="p-4 text-2xl font-bold">〈</button>
-                <div id="current-month" class="text-2xl font-bold">2024年 3月</div>
+                <div id="current-month" class="text-2xl font-bold">読み込み中...</div>
                 <button onclick="changeMonth(1)" class="p-4 text-2xl font-bold">〉</button>
             </div>
             <div class="grid grid-cols-7 gap-1 text-center font-bold text-slate-400 mb-2">
@@ -80,6 +80,13 @@
         </div>
 
     </main>
+
+    <!-- Add Button (Admin only) -->
+    <div id="admin-only" class="fixed bottom-6 right-6 z-50 hidden">
+        <button onclick="openForm()" class="bg-[#d2b48c] text-white w-16 h-16 rounded-full shadow-xl flex items-center justify-center text-4xl font-bold">
+            ＋
+        </button>
+    </div>
 
     <!-- Modal -->
     <div id="form-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[100] p-4">
