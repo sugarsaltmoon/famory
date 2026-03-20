@@ -128,7 +128,7 @@
     <!-- Scripts -->
     <script>
         // --- 設定エリア ---
-        const API_URL = 'https://script.google.com/macros/s/AKfycby2nC7xqg26V3vC1VaVKLlp_Aa_vUdwDemVHb6O9H4_d3QrRRcQH1-ExyOdwW7fxC6Q7A/exec';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwlFjHsYDYUyx_irB15Mge0XLgWpuFNARgJbP0a2vjLMCrCcZCpjUjfAQHu3B6oTyBHUw/exec';
         
         const params = new URLSearchParams(window.location.search);
         const ROLE = (params.get('role') || 'guest').toLowerCase();
@@ -169,7 +169,9 @@
                 }
             } catch (err) {
                 console.error('通信エラー:', err);
-                alert('通信に失敗しました。以前の指示に従って、GASのデプロイ設定（アクセス：全員）が正しく行われているか、またはWebアプリURLが正しいか確認してください。\n\nエラー内容: ' + err.message);
+                alert('通信に失敗しました。以前の指示に従って、GASのデプロイ設定（アクセス：全員）が正しく行われているか、またはWebアプリURLが正しいか確認してください。\n\n' +
+                '【現在の設定URL】: ' + API_URL + '\n' +
+                '【エラー内容】: ' + err.message);
             }
             setWait(false);
         }
