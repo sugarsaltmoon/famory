@@ -407,16 +407,16 @@
                         <div class="flex flex-wrap gap-3 pt-2">
                              ${e.場所 ? `
                                 <button onclick="openMap('${e.場所}')" class="btn-premium px-4 py-2.5 flex items-center gap-2 text-sm font-bold text-slate-600">
-                                    <span class="text-blue-500">📍</span> ${e.場所}
+                                    <span class="text-blue-500">🗺</span> ${e.場所}
                                 </button>
                             ` : ''}
                              ${e.pCloudURL ? `
-                                <a href="${e.pCloudURL}" target="_blank" class="btn-premium px-4 py-2.5 flex items-center gap-2 text-sm font-bold text-slate-600">
-                                    <span class="text-rose-500">🎬</span> 映像/写真の投稿・確認🔎
+                                <a href="${e.pCloudURL}" target="_blank" class="brand-gradient text-white px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm font-bold shadow-lg shadow-blue-100 hover:scale-105 transition-transform">
+                                    <span>🔎</span> 映像/写真の投稿・確認
                                 </a>
                              ` : ''}
                              ${e.pCloudUploadURL ? `
-                                <a href="${e.pCloudUploadURL}" target="_blank" class="brand-gradient text-white px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm font-bold shadow-lg shadow-blue-100 hover:scale-105 transition-transform">
+                                <a href="${e.pCloudUploadURL}" target="_blank" class="bg-slate-100 text-slate-600 px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm font-bold hover:bg-slate-200 transition-colors">
                                     <span>📸</span> 写真を投稿する
                                 </a>
                              ` : ''}
