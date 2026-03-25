@@ -238,7 +238,7 @@
     <!-- Scripts -->
     <script>
         // --- 設定エリア ---
-        const API_URL = 'https://script.google.com/macros/s/AKfycbzHm-PPSu3bOJq6POSuutEfiAlFtJZySqqM8BbhUz0Lsg3f9AjNM--UNF97LG4fHfAufg/exec';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbx1CJ2XIvY-LcENjFC86HwCaDkE7zfXOJ4modFZ48xUkvV3ri2T9AV9l4LuRDcny0UPVQ/exec';
 
         const params = new URLSearchParams(window.location.search);
         const ROLE = (params.get('role') || 'guest').toLowerCase();
@@ -412,18 +412,14 @@
                             ` : ''}
                              ${e.pCloudURL ? `
                                 <a href="${e.pCloudURL}" target="_blank" class="btn-premium px-4 py-2.5 flex items-center gap-2 text-sm font-bold text-slate-600">
-                                    <span class="text-rose-500">🎬</span> 映像・写真を見る
+                                    <span class="text-rose-500">🎬</span> 映像/写真の投稿・確認🔎
                                 </a>
                              ` : ''}
                              ${e.pCloudUploadURL ? `
                                 <a href="${e.pCloudUploadURL}" target="_blank" class="brand-gradient text-white px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm font-bold shadow-lg shadow-blue-100 hover:scale-105 transition-transform">
                                     <span>📸</span> 写真を投稿する
                                 </a>
-                             ` : (ROLE === 'admin' ? `
-                                <button onclick="reissueUploadLink('${e.ID}')" class="brand-gradient text-white px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm font-bold shadow-lg shadow-blue-100 hover:scale-105 transition-transform">
-                                    <span>📸</span> 写真を投稿する (リンク発行)
-                                </button>
-                             ` : '')}
+                             ` : ''}
                         </div>
                     </div>
                 `;
