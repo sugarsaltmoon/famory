@@ -93,13 +93,20 @@
             <h1 class="flex items-center gap-3 cursor-pointer" onclick="switchView('calendar'); clearDateFilter();">
                 <img src="logo_famory.png" alt="FAMORY" class="h-10 sm:h-12 w-auto">
             </h1>
-            <button onclick="toggleSearch()" class="p-2 text-slate-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </button>
+            <div class="flex items-center gap-1">
+                <button onclick="openHelp()" class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+                <button onclick="toggleSearch()" class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -243,8 +250,57 @@
         <div id="wait-msg" class="text-white font-bold text-lg bg-black/20 px-4 py-2 rounded-full">処理中...</div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Help Modal -->
+    <div id="help-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[110] p-4">
+        <div class="bg-white/95 backdrop-blur-xl w-full max-w-lg rounded-[32px] p-8 shadow-2xl space-y-6 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 brand-gradient"></div>
+            <div class="flex justify-between items-center">
+                <h3 class="text-2xl font-bold bg-clip-text text-transparent brand-gradient">使いかたガイド</h3>
+                <button onclick="closeHelp()" class="text-slate-400 p-2 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="space-y-6 text-slate-600">
+                <section class="space-y-3">
+                    <h4 class="flex items-center gap-2 font-bold text-slate-800">
+                        <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center text-sm">✅</span>
+                        できること
+                    </h4>
+                    <ul class="space-y-3 ml-10 list-disc text-sm leading-relaxed">
+                        <li><strong class="text-slate-900">思い出・写真を見る</strong>：カレンダーやタイムラインからいつでも振り返ることができます。</li>
+                        <li><strong class="text-slate-900">写真・動画を投稿する</strong>：各イベントの「写真を投稿する」ボタンから、誰でも直接アップロード可能です。</li>
+                        <li><strong class="text-slate-900">新しい思い出の登録</strong>：管理者が日付、タイトル、場所などを登録します。</li>
+                    </ul>
+                </section>
+
+                <section class="space-y-3">
+                    <h4 class="flex items-center gap-2 font-bold text-slate-800">
+                        <span class="w-8 h-8 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center text-sm">⚠️</span>
+                        できないこと・注意点
+                    </h4>
+                    <ul class="space-y-3 ml-10 list-disc text-sm leading-relaxed">
+                        <li><strong class="text-slate-900">管理者以外からの新規登録</strong>：ゲストの方は新しいイベントを自ら作成することはできません。</li>
+                        <li><strong class="text-slate-900">投稿した写真の削除</strong>：セキュリティと完全性のため、一度投稿したものは管理者経由でしか削除できません。</li>
+                        <li><strong class="text-slate-900">情報の変更</strong>：登録済みのイベント内容は管理者が管理します。</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <button onclick="closeHelp()" class="w-full p-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-colors">
+                閉じる
+            </button>
+        </div>
+    </div>
     <script>
+        function openHelp() {
+            document.getElementById('help-modal').classList.remove('hidden');
+        }
+        function closeHelp() {
+            document.getElementById('help-modal').classList.add('hidden');
+        }
         // --- 設定エリア ---
         const API_URL = 'https://script.google.com/macros/s/AKfycbyoOcL-Fmnp48RzLDC4CqBgFjTvogeazFsxYuPv7UpVzitOeB9-81EvvtSyfxN-VunU3g/exec';
 
