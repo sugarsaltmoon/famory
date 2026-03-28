@@ -263,30 +263,42 @@
                 </button>
             </div>
             
-            <div class="space-y-6 text-slate-600">
-                <section class="space-y-3">
-                    <h4 class="flex items-center gap-2 font-bold text-slate-800">
-                        <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center text-sm">✅</span>
-                        できること
-                    </h4>
-                    <ul class="space-y-3 ml-10 list-disc text-sm leading-relaxed">
-                        <li><strong class="text-slate-900">思い出・写真を見る</strong>：カレンダーやタイムラインからいつでも振り返ることができます。</li>
-                        <li><strong class="text-slate-900">写真・動画を投稿する</strong>：各イベントの「写真を投稿する」ボタンから、誰でも直接アップロード可能です。</li>
-                        <li><strong class="text-slate-900">新しい思い出の登録</strong>：管理者が日付、タイトル、場所などを登録します。</li>
-                    </ul>
-                </section>
+            <div class="space-y-8 py-4">
+                <!-- Flow Chart Item 1 -->
+                <div class="relative flex items-center gap-4">
+                    <div class="z-10 w-12 h-12 rounded-2xl brand-gradient text-white flex items-center justify-center shrink-0 shadow-lg font-bold">1</div>
+                    <div class="flex-1 p-4 bg-blue-50/50 rounded-2xl border border-blue-100">
+                        <div class="font-bold text-slate-800 text-sm mb-1">管理者：思い出を登録</div>
+                        <p class="text-[12px] text-slate-500 leading-relaxed">右下の「＋」ボタンから、日付・場所・タイトルを登録します。</p>
+                    </div>
+                    <div class="absolute left-6 top-12 w-0.5 h-8 bg-slate-100"></div>
+                </div>
 
-                <section class="space-y-3">
-                    <h4 class="flex items-center gap-2 font-bold text-slate-800">
-                        <span class="w-8 h-8 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center text-sm">⚠️</span>
-                        できないこと・注意点
-                    </h4>
-                    <ul class="space-y-3 ml-10 list-disc text-sm leading-relaxed">
-                        <li><strong class="text-slate-900">管理者以外からの新規登録</strong>：ゲストの方は新しいイベントを自ら作成することはできません。</li>
-                        <li><strong class="text-slate-900">投稿した写真の削除</strong>：セキュリティと完全性のため、一度投稿したものは管理者経由でしか削除できません。</li>
-                        <li><strong class="text-slate-900">情報の変更</strong>：登録済みのイベント内容は管理者が管理します。</li>
-                    </ul>
-                </section>
+                <!-- Flow Chart Item 2 -->
+                <div class="relative flex items-center gap-4">
+                    <div class="z-10 w-12 h-12 rounded-2xl brand-gradient text-white flex items-center justify-center shrink-0 shadow-lg font-bold">2</div>
+                    <div class="flex-1 p-4 bg-purple-50/50 rounded-2xl border border-purple-100">
+                        <div class="font-bold text-slate-800 text-sm mb-1">全員：写真・動画を投稿</div>
+                        <p class="text-[12px] text-slate-500 leading-relaxed">登録された思い出の「写真を投稿する」から、自由に撮影・投稿！</p>
+                    </div>
+                    <div class="absolute left-6 top-12 w-0.5 h-8 bg-slate-100"></div>
+                </div>
+
+                <!-- Flow Chart Item 3 -->
+                <div class="flex items-center gap-4">
+                    <div class="z-10 w-12 h-12 rounded-2xl brand-gradient text-white flex items-center justify-center shrink-0 shadow-lg font-bold">3</div>
+                    <div class="flex-1 p-4 bg-orange-50/50 rounded-2xl border border-orange-100">
+                        <div class="font-bold text-slate-800 text-sm mb-1">家族：振り返って共有</div>
+                        <p class="text-[12px] text-slate-500 leading-relaxed">「想い出を振り返る」から、みんなが投稿した内容を眺めて楽しみます。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 bg-slate-50 rounded-2xl space-y-2">
+                <div class="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> 制限事項
+                </div>
+                <p class="text-[12px] text-slate-500 leading-relaxed">新規登録は管理者のみ。投稿済みの削除は管理者までご連絡ください。</p>
             </div>
             
             <button onclick="closeHelp()" class="w-full p-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-colors">
@@ -565,8 +577,17 @@
 
         // --- Form Interaction ---
         function openForm() {
+            const dateInput = document.getElementById('f-date');
+            
+            // 日付の初期値を設定
+            if (selectedDate) {
+                // selectedDate (YYYY-MM-DD か Date)
+                dateInput.value = selectedDate instanceof Date ? selectedDate.toISOString().split('T')[0] : selectedDate;
+            } else {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+            
             document.getElementById('form-modal').classList.remove('hidden');
-            document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
         }
 
         function closeForm() {
