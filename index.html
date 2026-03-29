@@ -94,12 +94,16 @@
                 <img src="logo_famory.png" alt="FAMORY" class="h-10 sm:h-12 w-auto">
             </h1>
             <div class="flex items-center gap-1">
-                <button onclick="openHelp()" class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <button onclick="openHelp()"
+                    class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </button>
-                <button onclick="toggleSearch()" class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors">
+                <button onclick="toggleSearch()"
+                    class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -252,26 +256,34 @@
 
     <!-- Help Modal -->
     <div id="help-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[110] p-4">
-        <div class="bg-white/95 backdrop-blur-xl w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[32px] p-6 sm:p-8 shadow-2xl space-y-6 relative">
-            <div class="sticky top-0 bg-white/10 backdrop-blur-md -m-8 mb-0 p-8 pt-6 z-20 flex justify-between items-center border-b border-slate-100">
+        <div
+            class="bg-white/95 backdrop-blur-xl w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[32px] p-6 sm:p-8 shadow-2xl space-y-6 relative">
+            <div
+                class="sticky top-0 bg-white/10 backdrop-blur-md -m-8 mb-0 p-8 pt-6 z-20 flex justify-between items-center border-b border-slate-100">
                 <h3 class="text-2xl font-bold bg-clip-text text-transparent brand-gradient">使いかたガイド</h3>
-                <button onclick="closeHelp()" class="text-slate-400 p-2 hover:bg-slate-100 rounded-full transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                <button onclick="closeHelp()"
+                    class="text-slate-400 p-2 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-            
+
             <div class="space-y-6 py-2">
                 <!-- Admin Column -->
                 <div class="p-5 rounded-3xl bg-rose-50 border border-rose-100 space-y-3 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-rose-100 opacity-50 scale-150 rotate-12">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                         </svg>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="w-10 h-10 rounded-2xl bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-200">👑</span>
+                        <span
+                            class="w-10 h-10 rounded-2xl bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-200">👑</span>
                         <h4 class="font-black text-rose-900">管理者（パパ・ママ）</h4>
                     </div>
                     <ul class="text-[13px] text-rose-700 space-y-2.5 ml-1">
@@ -285,7 +297,8 @@
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-rose-400 mt-1 shrink-0">●</span>
-                            <span><strong class="text-rose-900 border-b border-rose-200">アルバムをLINEで共有</strong><span class="text-rose-400/80 ml-1">（管理者のみ）</span></span>
+                            <span><strong class="text-rose-900 border-b border-rose-200">アルバムをLINEで共有</strong><span
+                                    class="text-rose-400/80 ml-1">（管理者のみ）</span></span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-rose-400 mt-1 shrink-0">●</span>
@@ -297,18 +310,22 @@
                 <!-- Guest Column -->
                 <div class="p-5 rounded-3xl bg-blue-50 border border-blue-100 space-y-3 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-blue-100 opacity-50 scale-150 -rotate-12">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="w-10 h-10 rounded-2xl bg-blue-500 text-white flex items-center justify-center shadow-lg shadow-blue-200">🏠</span>
+                        <span
+                            class="w-10 h-10 rounded-2xl bg-blue-500 text-white flex items-center justify-center shadow-lg shadow-blue-200">🏠</span>
                         <h4 class="font-black text-blue-900">家族・ゲスト</h4>
                     </div>
                     <ul class="text-[13px] text-blue-700 space-y-2.5 ml-1">
                         <li class="flex items-start gap-2">
                             <span class="text-blue-400 mt-1 shrink-0">●</span>
-                            <span><strong class="text-blue-900">写真・動画の投稿</strong><span class="text-blue-400/80 ml-1">（各イベントから）</span></span>
+                            <span><strong class="text-blue-900">写真・動画の投稿</strong><span
+                                    class="text-blue-400/80 ml-1">（各イベントから）</span></span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-blue-400 mt-1 shrink-0">●</span>
@@ -321,12 +338,13 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="text-center">
                 <p class="text-[11px] text-slate-400">※ 写真を投稿すると、家族全員の見られる場所に保存されます。</p>
             </div>
-            
-            <button onclick="closeHelp()" class="w-full p-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-colors">
+
+            <button onclick="closeHelp()"
+                class="w-full p-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-colors">
                 閉じる
             </button>
         </div>
@@ -601,15 +619,23 @@
         }
 
         function shareLine(title, date, viewUrl, uploadUrl) {
+            const addParam = (url) => {
+                if (!url) return url;
+                return url + (url.includes('?') ? '&' : '?') + 'openExternalBrowser=1';
+            };
+
+            const shareUploadUrl = addParam(uploadUrl);
+            const shareViewUrl = addParam(viewUrl);
+
             let msg = `【ファモリ】想い出の共有 ✨\n\nタイトル：${title}\n日付：${date}\n\nここに写真や動画を入れてね！📸\n\n`;
-            
-            if (uploadUrl) {
-                msg += `▼ 写真・動画の投稿はこちら\n${uploadUrl}\n\n`;
+
+            if (shareUploadUrl) {
+                msg += `▼ 写真・動画の投稿はこちら\n${shareUploadUrl}\n\n`;
             }
-            if (viewUrl) {
-                msg += `▼ みんなの投稿を見る\n${viewUrl}`;
+            if (shareViewUrl) {
+                msg += `▼ みんなの投稿を見る\n${shareViewUrl}`;
             }
-            
+
             const text = encodeURIComponent(msg);
             window.open(`https://line.me/R/msg/text/?${text}`, '_blank');
         }
@@ -622,7 +648,7 @@
         // --- Form Interaction ---
         function openForm() {
             const dateInput = document.getElementById('f-date');
-            
+
             // 日付の初期値を設定
             if (selectedDate) {
                 // selectedDate (YYYY-MM-DD か Date)
@@ -630,7 +656,7 @@
             } else {
                 dateInput.value = new Date().toISOString().split('T')[0];
             }
-            
+
             document.getElementById('form-modal').classList.remove('hidden');
         }
 
