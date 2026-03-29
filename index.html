@@ -278,6 +278,7 @@
                     <ul class="text-[13px] text-rose-700 space-y-2 ml-1">
                         <li class="flex items-center gap-2"><span class="text-rose-400">●</span> <strong>思い出の登録</strong>（右下の ＋ ボタン）</li>
                         <li class="flex items-center gap-2"><span class="text-rose-400">●</span> 写真・動画の投稿（各イベントから）</li>
+                        <li class="flex items-center gap-2"><span class="text-rose-400">●</span> <strong class="text-rose-900 border-b border-rose-200">アルバムをLINEで共有</strong>（管理者のみ）</li>
                         <li class="flex items-center gap-2"><span class="text-rose-400">●</span> カレンダーで振り返り</li>
                     </ul>
                 </div>
@@ -504,6 +505,11 @@
                                     <span>📸</span> 写真・動画を投稿する
                                 </button>
                              ` : '')}
+                             ${ROLE === 'admin' ? `
+                                <button onclick="shareLine('${e.タイトル}', '${e.日付}', '${e.pCloudURL}', '${e.pCloudUploadURL}')" class="bg-[#06c755] text-white p-2.5 rounded-2xl flex items-center justify-center hover:scale-105 transition-transform shadow-lg shadow-green-100" title="LINEで共有">
+                                    <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.304c0-4.662-4.605-8.463-10.276-8.463C8.044 1.841 3.438 5.642 3.438 10.304c0 4.18 3.655 7.684 8.59 8.354.335.072.791.221.906.508.104.258.068.663.033 1.055-.104.996-.48 4.298-.48 4.298s-.175 1.144.75 1.144c.82 0 4.341-2.553 5.922-4.685.112-.132.39-1.127.39-1.127 3.511-1.282 5.031-4.706 5.031-8.586zM9.54 13.513H7.567a.465.465 0 01-.465-.465V7.575a.465.465 0 01.465-.465h1.973a.465.465 0 01.465.465.465.465 0 01-.465.465H8.032v1.543H9.54a.465.465 0 01.465.465.465.465 0 01-.465.465H8.032v1.534H9.54a.465.465 0 01.465.465.465.465 0 01-.465.465zm3.172 0h-1.97a.465.465 0 01-.465-.465V7.575a.465.465 0 01.465-.465.465.465 0 01.465.465V12.58h1.505a.465.465 0 01.465.465.465.465 0 01-.465.465zm1.505-.465a.465.465 0 01-.465.465h-.001a.465.465 0 01-.465-.465V7.575a.465.465 0 01.465-.465.465.465 0 01.465.465v5.473zm4.242 0V13.05a.465.465 0 01-.465.465h-1.391V7.575a.465.465 0 01.465-.465.465.465 0 01.465.465V12.58h.923a.465.465 0 01.465.465.465.465 0 01-.465.465z"/></svg>
+                                </button>
+                             ` : ''}
                         </div>
                     </div>
                 `;
@@ -572,6 +578,20 @@
                 alert('通信エラーが発生しました');
             }
             setWait(false);
+        }
+
+        function shareLine(title, date, viewUrl, uploadUrl) {
+            let msg = `【ファモリ】想い出の共有 ✨\n\nタイトル：${title}\n日付：${date}\n\nここに写真や動画を入れてね！📸\n\n`;
+            
+            if (uploadUrl) {
+                msg += `▼ 写真・動画の投稿はこちら\n${uploadUrl}\n\n`;
+            }
+            if (viewUrl) {
+                msg += `▼ みんなの投稿を見る\n${viewUrl}`;
+            }
+            
+            const text = encodeURIComponent(msg);
+            window.open(`https://line.me/R/msg/text/?${text}`, '_blank');
         }
 
         // 旧式のアップロード機能は無効化、または削除可能
