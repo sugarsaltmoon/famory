@@ -338,22 +338,6 @@
                     </ul>
                 </div>
 
-                <!-- Invite Family Section (Admin only) -->
-                <div id="invite-family-section" class="hidden p-5 rounded-3xl bg-slate-50 border border-slate-200 mt-4 space-y-4">
-                    <div class="flex items-center gap-2">
-                        <span class="w-10 h-10 rounded-2xl bg-slate-600 text-white flex items-center justify-center shadow-lg shadow-slate-200">✉️</span>
-                        <h4 class="font-black text-slate-900">家族を招待する</h4>
-                    </div>
-                    <p class="text-[12px] text-slate-500">アプリ本体へのリンクを各ご家庭に共有できます（LINE送信）。</p>
-                    <div class="grid grid-cols-2 gap-3">
-                        <button onclick="shareAppLink('大塚家')" class="flex items-center justify-center gap-2 p-3 bg-rose-500 text-white rounded-xl text-[12px] font-bold shadow-lg shadow-rose-100 hover:scale-105 transition-transform whitespace-nowrap">
-                            🔴 大塚家を招待
-                        </button>
-                        <button onclick="shareAppLink('石川家')" class="flex items-center justify-center gap-2 p-3 bg-emerald-500 text-white rounded-xl text-[12px] font-bold shadow-lg shadow-emerald-100 hover:scale-105 transition-transform whitespace-nowrap">
-                            🟢 石川家を招待
-                        </button>
-                    </div>
-                </div>
             </div>
 
             <div class="text-center">
@@ -388,14 +372,19 @@
             console.log('Detected Role:', ROLE);
             if (ROLE === 'admin') {
                 const btn = document.getElementById('admin-only');
-                const inviteSection = document.getElementById('invite-family-section');
                 if (btn) {
                     btn.classList.remove('hidden');
                     btn.style.display = 'block'; // 強制的に表示
                     console.log('Admin button shown');
                 }
-                if (inviteSection) {
-                    inviteSection.classList.remove('hidden');
+            }
+            
+            // 遷移先対応: URLパラメータに日付があれば、その月のカレンダーを表示
+            const dateParam = params.get('date');
+            if (dateParam) {
+                const d = new Date(dateParam);
+                if (!isNaN(d.getTime())) {
+                    currentMonth = d;
                 }
             }
             loadData();
@@ -649,21 +638,11 @@
         }
 
         // --- 共有機能 ---
-        function getAppUrl(role) {
+        function getAppUrl(role, date) {
             const url = new URL(window.location.href);
             url.searchParams.set('role', role);
+            if (date) url.searchParams.set('date', date);
             return url.toString();
-        }
-
-        function shareAppLink(range) {
-            let role = 'guest';
-            if (range === '大塚家') role = 'paternal';
-            else if (range === '石川家') role = 'maternal';
-
-            const appLink = addExternalParam(getAppUrl(role));
-            const msg = `【ファモリ】家族の思い出カレンダー ✨\n\nアプリへのリンクはこちらです。ぜひブックマークしてね！🏠\n\n▼ アプリを開く\n${appLink}`;
-            const text = encodeURIComponent(msg);
-            window.open(`https://line.me/R/msg/text/?${text}`, '_blank');
         }
 
         function shareLine(title, date, viewUrl, uploadUrl, range) {
@@ -673,11 +652,13 @@
             let role = 'guest';
             if (range === '大塚家') role = 'paternal';
             else if (range === '石川家') role = 'maternal';
-            const appLink = addExternalParam(getAppUrl(role));
+            
+            // アプリへのリンク（その月のカレンダーを開く）
+            const appLink = addExternalParam(getAppUrl(role, date));
 
             let msg = `【ファモリ】想い出の共有 ✨\n\nタイトル：${title}\n日付：${date}\n\nここに写真や動画を入れてね！📸\n\n`;
 
-            msg += `▼ アプリへのリンクはこちら\n${appLink}\n\n`;
+            msg += `▼ アプリへのリンクはこちら（カレンダーが開きます）\n${appLink}\n\n`;
 
             if (shareUploadUrl) {
                 msg += `▼ 写真・動画の投稿はこちら\n${shareUploadUrl}\n\n`;
