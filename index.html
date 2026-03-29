@@ -252,9 +252,8 @@
 
     <!-- Help Modal -->
     <div id="help-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[110] p-4">
-        <div class="bg-white/95 backdrop-blur-xl w-full max-w-lg rounded-[32px] p-8 shadow-2xl space-y-6 relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-2 brand-gradient"></div>
-            <div class="flex justify-between items-center">
+        <div class="bg-white/95 backdrop-blur-xl w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[32px] p-6 sm:p-8 shadow-2xl space-y-6 relative">
+            <div class="sticky top-0 bg-white/10 backdrop-blur-md -m-8 mb-0 p-8 pt-6 z-20 flex justify-between items-center border-b border-slate-100">
                 <h3 class="text-2xl font-bold bg-clip-text text-transparent brand-gradient">使いかたガイド</h3>
                 <button onclick="closeHelp()" class="text-slate-400 p-2 hover:bg-slate-100 rounded-full transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -275,11 +274,23 @@
                         <span class="w-10 h-10 rounded-2xl bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-200">👑</span>
                         <h4 class="font-black text-rose-900">管理者（パパ・ママ）</h4>
                     </div>
-                    <ul class="text-[13px] text-rose-700 space-y-2 ml-1">
-                        <li class="flex items-center gap-2"><span class="text-rose-400">●</span> <strong>思い出の登録</strong>（右下の ＋ ボタン）</li>
-                        <li class="flex items-center gap-2"><span class="text-rose-400">●</span> 写真・動画の投稿（各イベントから）</li>
-                        <li class="flex items-center gap-2"><span class="text-rose-400">●</span> <strong class="text-rose-900 border-b border-rose-200">アルバムをLINEで共有</strong>（管理者のみ）</li>
-                        <li class="flex items-center gap-2"><span class="text-rose-400">●</span> カレンダーで振り返り</li>
+                    <ul class="text-[13px] text-rose-700 space-y-2.5 ml-1">
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-400 mt-1 shrink-0">●</span>
+                            <span><strong>思い出の登録</strong><span class="text-rose-400/80 ml-1">（右下の ＋ ボタン）</span></span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-400 mt-1 shrink-0">●</span>
+                            <span>写真・動画の投稿<span class="text-rose-400/80 ml-1">（各イベントから）</span></span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-400 mt-1 shrink-0">●</span>
+                            <span><strong class="text-rose-900 border-b border-rose-200">アルバムをLINEで共有</strong><span class="text-rose-400/80 ml-1">（管理者のみ）</span></span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-400 mt-1 shrink-0">●</span>
+                            <span>カレンダーで振り返り</span>
+                        </li>
                     </ul>
                 </div>
 
@@ -294,10 +305,19 @@
                         <span class="w-10 h-10 rounded-2xl bg-blue-500 text-white flex items-center justify-center shadow-lg shadow-blue-200">🏠</span>
                         <h4 class="font-black text-blue-900">家族・ゲスト</h4>
                     </div>
-                    <ul class="text-[13px] text-blue-700 space-y-2 ml-1">
-                        <li class="flex items-center gap-2"><span class="text-blue-400">●</span> <strong class="text-blue-900">写真・動画の投稿</strong>（各イベントから）</li>
-                        <li class="flex items-center gap-2"><span class="text-blue-400">●</span> カレンダーで振り返り</li>
-                        <li class="flex items-center gap-2 opacity-50 italic">× 新規登録はできません</li>
+                    <ul class="text-[13px] text-blue-700 space-y-2.5 ml-1">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-400 mt-1 shrink-0">●</span>
+                            <span><strong class="text-blue-900">写真・動画の投稿</strong><span class="text-blue-400/80 ml-1">（各イベントから）</span></span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-400 mt-1 shrink-0">●</span>
+                            <span>カレンダーで振り返り</span>
+                        </li>
+                        <li class="flex items-start gap-2 opacity-60 italic mt-4">
+                            <span class="mt-1 shrink-0">×</span>
+                            <span>新規登録はできません</span>
+                        </li>
                     </ul>
                 </div>
             </div>
